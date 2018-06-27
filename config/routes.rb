@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 			post '/users/sessions' => 'sessions#create'
 			get '/tasks' => 'tasks#index'
 			post '/tasks' => 'tasks#create'
+			delete '/tasks/:id' => 'tasks#destroy'
 		end
 	end
 end

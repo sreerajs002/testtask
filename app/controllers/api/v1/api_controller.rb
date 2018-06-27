@@ -9,7 +9,7 @@ class Api::V1::ApiController < ApplicationController
 
     def require_login!
         return true if authenticate_token
-        render json: { errors: [ { detail: "Access denied" } ] }, status: 401
+        render json: { errors: [ { details: "Access denied" } ] }, status: 401
     end
 
     def current_person
@@ -18,5 +18,9 @@ class Api::V1::ApiController < ApplicationController
 
     def authenticate_token
         User.find_by(auth_token: request.headers["token"])
+    end
+
+    rescue_from CanCan::AccessDenied do |exception|
+      render json: { errors: [ { details: exception } ] }, status: 401
     end
 end

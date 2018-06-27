@@ -9,7 +9,7 @@ class Ability
         can :manage, :all
       elsif user.is_role? UsersHelper::ParticipantUser
         can [:create], Task
-        can [:list,:index,:read, :update, :destroy], Task, :user_id => user.id
+        can [:list,:index,:read, :update], Task, :user_id => user.id
       end
     #
     # The first argument to `can` is the action you are giving the user
